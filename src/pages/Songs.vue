@@ -58,10 +58,16 @@ export default {
         });
         this.songs.sort((a, b) => b.like - a.like);
         this.loading = false;
-      });
+      }).catch((error) => {
+        this.loading = false;
+        this.$message({
+          message: error,
+          type: "warning",
+        });
+      })
     },
   },
-  mounted() {
+  created() {
     const loading = this.$loading({
       lock: true
     });
