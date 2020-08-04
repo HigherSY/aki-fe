@@ -10,9 +10,8 @@
           justify="center"
           align="middle"
           v-for="song in songs"
-          v-bind:key="song.n"
-        >
-          <el-col :md="8" span="20">
+          v-bind:key="song.n">
+          <el-col :md="8" :span="20">
             <el-card>
               <div slot="header">
                 <span>
@@ -20,16 +19,17 @@
                   <el-link type="primary">@{{ song.nick }}</el-link>
                   已获得 {{ song.like }} 票
                 </span>
+              </div>
+              <Meting :auto="song.jumpUrl" />
                 <el-button
                   type="primary"
                   icon="el-icon-sort-up"
                   size="small"
-                  style="float: right; padding: 5px"
+                  class="up-button"
                   @click="like(song)"
-                  :loading="loading"
-                >送我上去</el-button>
-              </div>
-              <Meting :auto="song.jumpUrl" />
+                  :loading="loading">
+                  送我上去
+                </el-button>
             </el-card>
           </el-col>
         </el-row>
@@ -86,6 +86,11 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 40px;
+}
+
+.up-button {
+  margin: 12px;
+  float: right;
 }
 
 .flip-list-move {
